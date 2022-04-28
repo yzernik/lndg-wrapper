@@ -94,11 +94,11 @@ interfaces:
     description: The main LNDg browser interface
     tor-config:
       port-mapping:
-        80: "8889"
+        80: "12994"
     lan-config:
       443:
         ssl: true
-        internal: 8889
+        internal: 12994
     ui: true
     protocols:
       - tcp

@@ -39,7 +39,6 @@ EXPOSE 18666
 EXPOSE 18777
 # Web server
 EXPOSE 12994
-EXPOSE 8889
 
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
