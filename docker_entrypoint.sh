@@ -20,6 +20,7 @@ fi
 
 
 TOR_ADDRESS=$(yq e '.tor-address' /root/start9/config.yaml)
+PEER_TOR_ADDRESS=$(yq e '.peer-tor-address' /root/start9/config.yaml)
 LAN_ADDRESS=$(yq e '.lan-address' /root/start9/config.yaml)
 LND_ADDRESS='lnd.embassy'
 SQUEAKNODE_ADDRESS='squeaknode.embassy'
@@ -43,7 +44,7 @@ export SQUEAKNODE_WEBADMIN_PASSWORD=$SQUEAKNODE_PASS
 export SQUEAKNODE_NODE_NETWORK='mainnet'
 export SQUEAKNODE_NODE_SQK_DIR_PATH='/root/sqk'
 export SQUEAKNODE_NODE_MAX_SQUEAKS=10000
-export SQUEAKNODE_SERVER_EXTERNAL_ADDRESS="TODO"
+export SQUEAKNODE_SERVER_EXTERNAL_ADDRESS=$PEER_TOR_ADDRESS
 
 
 # Creating duplicate directory for the lnd macaroon files
