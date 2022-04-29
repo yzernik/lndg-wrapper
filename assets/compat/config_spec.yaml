@@ -1,6 +1,6 @@
 tor-address:
   name: Network Tor Address
-  description: The Tor address for the network interface. 
+  description: The Tor address for the network interface.
   type: pointer
   subtype: package
   package-id: lndg
@@ -8,7 +8,7 @@ tor-address:
   interface: main
 lan-address:
   name: Network LAN Address
-  description: The LAN address for the network interface. 
+  description: The LAN address for the network interface.
   type: pointer
   subtype: package
   package-id: lndg
@@ -24,3 +24,56 @@ password:
   default:
     charset: "a-z,A-Z,0-9"
     len: 22
+bitcoind:
+  type: union
+  name: Bitcoin Core
+  description: The Bitcoin Core node to connect to
+  tag:
+    id: type
+    name: Type
+    description: |
+      - Internal: The Bitcoin Core service installed to your Embassy
+      - Internal Proxy: The Bitcoin Proxy service installed on your Embassy
+    variant-names:
+      internal: Internal
+      internal-proxy: Internal (Bitcoin Proxy)
+  default: internal
+  variants:
+    internal:
+      user:
+        type: pointer
+        name: RPC Username
+        description: The username for the RPC user for Bitcoin Core
+        subtype: package
+        package-id: bitcoind
+        target: config
+        selector: "$.rpc.username"
+        multi: false
+      password:
+        type: pointer
+        name: RPC Password
+        description: The password for the RPC user for Bitcoin Core
+        subtype: package
+        package-id: bitcoind
+        target: config
+        selector: "$.rpc.password"
+        multi: false
+    internal-proxy:
+      user:
+        type: pointer
+        name: RPC Username
+        description: The username for the RPC user allocated to Squeaknode
+        subtype: package
+        package-id: btc-rpc-proxy
+        target: config
+        multi: false
+        selector: '$.users.[?(@.name == "squeaknode")].name'
+      password:
+        type: pointer
+        name: RPC Password
+        description: The password for the RPC user allocated to Squeaknode
+        subtype: package
+        package-id: btc-rpc-proxy
+        target: config
+        multi: false
+        selector: '$.users.[?(@.name == "squeaknode")].password'

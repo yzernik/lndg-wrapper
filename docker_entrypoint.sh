@@ -5,6 +5,20 @@ _term() {
   kill -TERM "$backend_process" 2>/dev/null
 }
 
+
+bitcoind_type=$(yq e '.bitcoind.type' /root/start9/config.yaml)
+bitcoind_user=$(yq e '.bitcoind.user' /root/start9/config.yaml)
+bitcoind_pass=$(yq e '.bitcoind.password' /root/start9/config.yaml)
+# configure mempool to use just a bitcoind backend
+if [ "$bitcoind_type" = "internal-proxy" ]; then
+	bitcoind_host="btc-rpc-proxy.embassy"
+	echo "Running on Bitcoin Proxy..."
+else
+	bitcoind_host="bitcoind.embassy"
+	echo "Running on Bitcoin Core..."
+fi
+
+
 TOR_ADDRESS=$(yq e '.tor-address' /root/start9/config.yaml)
 LAN_ADDRESS=$(yq e '.lan-address' /root/start9/config.yaml)
 LND_ADDRESS='lnd.embassy'
@@ -13,10 +27,10 @@ LNDG_PASS=$(yq e '.password' /root/start9/config.yaml)
 HOST_IP=$(ip -4 route list match 0/0 | awk '{print $3}')
 
 
-export SQUEAKNODE_BITCOIN_RPC_HOST="TODO"
+export SQUEAKNODE_BITCOIN_RPC_HOST=$bitcoind_host
 export SQUEAKNODE_BITCOIN_RPC_PORT=8332
-#export SQUEAKNODE_BITCOIN_RPC_USER=
-#export SQUEAKNODE_BITCOIN_RPC_PASS=
+export SQUEAKNODE_BITCOIN_RPC_USER=$bitcoind_user
+export SQUEAKNODE_BITCOIN_RPC_PASS=$bitcoind_pass
 export SQUEAKNODE_LND_HOST=$LND_ADDRESS
 export SQUEAKNODE_LND_RPC_PORT=10009
 export SQUEAKNODE_LND_TLS_CERT_PATH="/mnt/lnd/tls.cert"

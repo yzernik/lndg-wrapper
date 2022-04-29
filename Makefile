@@ -1,5 +1,5 @@
 EMVER := $(shell yq e ".version" manifest.yaml)
-LNDG_SRC := $(shell find ./lndg)
+LNDG_SRC := $(shell find ./squeaknode)
 S9PK_PATH=$(shell find . -name lndg.s9pk -print)
 
 .DELETE_ON_ERROR:
