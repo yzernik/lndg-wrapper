@@ -4,7 +4,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 	apt-get install -y \
 	gcc \
 	libffi-dev \
-	iproute2 wget curl tini \
 	build-essential
 
 RUN python -m venv /opt/venv
