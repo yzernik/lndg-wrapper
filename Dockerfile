@@ -9,9 +9,7 @@ RUN pip install --upgrade pip
 WORKDIR /app
 
 # Copy the source code.
-COPY squeaknode/squeaknode ./squeaknode
-COPY squeaknode/proto ./proto
-COPY squeaknode/LICENSE squeaknode/MANIFEST.in squeaknode/README.md squeaknode/requirements.txt squeaknode/setup.cfg squeaknode/setup.py  ./
+COPY squeaknode .
 
 RUN pip install .
 
