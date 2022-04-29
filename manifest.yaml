@@ -103,6 +103,16 @@ interfaces:
     protocols:
       - tcp
       - http
+  peer:
+    name: Peer Interface
+    description: Specifies the interfaces to listen on for p2p requests.
+    tor-config:
+      port-mapping:
+        8555: "8555"
+    ui: false
+    protocols:
+      - tcp
+      - http
 dependencies:
   bitcoind:
     version: ">=0.21.1.2 <=23.0.0"
