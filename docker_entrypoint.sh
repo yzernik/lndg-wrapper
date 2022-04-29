@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
-_term() { 
-  echo "Caught SIGTERM signal!" 
+_term() {
+  echo "Caught SIGTERM signal!"
   kill -TERM "$backend_process" 2>/dev/null
 }
 
@@ -46,24 +46,9 @@ export SQUEAKNODE_NODE_MAX_SQUEAKS=10000
 export SQUEAKNODE_SERVER_EXTERNAL_ADDRESS="TODO"
 
 
-# Creating duplicate directory for the lnd macaroon files 
+# Creating duplicate directory for the lnd macaroon files
 mkdir -p /mnt/lnd/data/chain/bitcoin/mainnet
 cp /mnt/lnd/*.macaroon /mnt/lnd/data/chain/bitcoin/mainnet
-
-# #Starting Squeaknode
-# echo
-# echo "  Starting Squeaknode... "
-# echo
-# .venv/bin/python initialize.py -net 'mainnet' -server $LND_ADDRESS':10009' -d -dx -dir /mnt/lnd -ip $LAN_ADDRESS -p $LNDG_PASS
-# echo "modifying settings.py..."
-# echo "CORS_ALLOW_CREDENTIALS = True
-# CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_CREDENTIALS = True
-# GRPC_DNS_RESOLVER='native'
-# CSRF_TRUSTED_ORIGINS = ['https://"$LAN_ADDRESS"']
-# " >> lndg/settings.py
-# sed -i "s/ALLOWED_HOSTS = \[/&'"$TOR_ADDRESS"','"$LNDG_ADDRESS"',/" lndg/settings.py
-# sed -i "s/+ '\/data\/chain\/bitcoin\/' + LND_NETWORK +/ + /" /src/lndg/gui/lnd_deps/lnd_connect.py
 
 # Properties Page showing password to be used for login
   echo 'version: 2' >> /root/start9/stats.yaml
@@ -83,23 +68,6 @@ cp /mnt/lnd/*.macaroon /mnt/lnd/data/chain/bitcoin/mainnet
         echo '    masked: true' >> /root/start9/stats.yaml
         echo '    qr: false' >> /root/start9/stats.yaml
 
-# Starting all processes
+# Starting Squeaknode process
 echo "starting squeaknode..."
-# .venv/bin/python jobs.py
-# echo "modifying systemd.sh..."
-# chmod a+x systemd.sh
-# sed -i 's/${SUDO_USER:-${USER}}/"'root'"/g' systemd.sh
-# sed -i "s/HOME_DIR='\/root'/HOME_DIR='\/src'/g" systemd.sh
-# echo "running .venv/bin/python manage.py runserver 0.0.0.0:8889 "
-# .venv/bin/python manage.py runserver 0.0.0.0:8889 & 
-# backend_process=$!
-# echo "PID: $backend_process"
-# echo "starting systemd..."
-# sleep 15 && ./systemd.sh 
-
-# # ERROR HANDLING
-# trap _term SIGTERM
-# wait $backend_process
-# echo "Exit status $?"
-
 exec squeaknode --log-level INFO
