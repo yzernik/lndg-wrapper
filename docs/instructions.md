@@ -1,11 +1,11 @@
-# Instructions for LNDg
+# Instructions for Squeaknode
 
-You can login using the username "lndg-admin"
+You can login using the username "squeaknode-admin"
 Your admin password can be found on the properties page.
 
-# Detailed instructions and suggested steps from LNDg support
+# Detailed instructions and suggested steps from Squeaknode support
 
-## LNDg First Steps
+## Squeaknode First Steps
 1 - Enable the channels that you want to get outbound liquidity to
 
 2 - For each enabled channel enter the inbound % that you want to push that channel down to. For example, if you want 90% on the local side of a channel then enter 10% in the iTarget%. You must hit enter after you type in the number for the change to become effective.

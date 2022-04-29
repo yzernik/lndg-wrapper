@@ -3,7 +3,7 @@ tor-address:
   description: The Tor address for the network interface.
   type: pointer
   subtype: package
-  package-id: lndg
+  package-id: squeaknode
   target: tor-address
   interface: main
 lan-address:
@@ -11,13 +11,13 @@ lan-address:
   description: The LAN address for the network interface.
   type: pointer
   subtype: package
-  package-id: lndg
+  package-id: squeaknode
   target: lan-address
   interface: main
 password:
   type: string
   name: Password
-  description: Administrator password for LNDg (The username is 'lndg-admin')
+  description: Administrator password for Squeaknode (The username is 'squeaknode-admin')
   nullable: false
   copyable: true
   masked: true

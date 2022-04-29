@@ -1,16 +1,16 @@
-id: lndg
-title: LNDg
+id: squeaknode
+title: Squeaknode
 version: 1.0.5.1
-release-notes: Initial release of a LNDg for EmbassyOS v0.3.0.2
+release-notes: Initial release of a Squeaknode for EmbassyOS v0.3.0.2
 license: mit
-wrapper-repo: "https://github.com/Start9Labs/lndg-wrapper"
-upstream-repo: "https://github.com/cryptosharks131/lndg"
-support-site: "https://t.me/+cPi5nRCg_1g1MTNh"
-marketing-site: "https://twitter.com/cryptosharks131"
+wrapper-repo: "https://github.com/squeaknode/squeaknode-wrapper"
+upstream-repo: "https://github.com/squeaknode/squeaknode"
+support-site: "https://t.me/squeaknode"
+marketing-site: "https://squeaknode.org/"
 build: ["make"]
 description:
-  short: "Lite GUI interface for LND"
-  long: "Lite GUI web interface to analyze lnd data and leverage the backend database for automation tools around rebalancing and other basic maintenance tasks."
+  short: "Peer-to-peer status feed with posts unlocked by Lightning"
+  long: "Squeaknode is a peer-to-peer microblog with posts unlocked by Lightning Network payments. The app allows you to create, view, buy, and sell squeaks. A squeak is a post that can contain up to 280 characters. The Squeaknode timeline is ordered by the height of the Bitcoin block hash embedded in each squeak. Each squeak must be signed with the private key of the author. Squeaks can be downloaded from any peer to any peer, but they remain locked until the downloader makes a Lightning payment to decrypt the content."
 assets:
   license: LICENSE
   icon: icon.png
@@ -29,7 +29,7 @@ main:
 health-checks:
   main:
     name: Web Interface
-    success-message: The LNDg UI is ready to visit in a web browser
+    success-message: The Squeaknode UI is ready to visit in a web browser
     type: docker
     image: main
     entrypoint: health-check.sh
@@ -59,7 +59,7 @@ config:
     args:
       - config
       - set
-      - lndg
+      - squeaknode
       - /root
       - /mnt/assets/config_rules.yaml
     mounts:
@@ -91,7 +91,7 @@ volumes:
 interfaces:
   main:
     name: Browser Interface
-    description: The main LNDg browser interface
+    description: The main Squeaknode browser interface
     tor-config:
       port-mapping:
         80: "12994"

@@ -22,8 +22,8 @@ fi
 TOR_ADDRESS=$(yq e '.tor-address' /root/start9/config.yaml)
 LAN_ADDRESS=$(yq e '.lan-address' /root/start9/config.yaml)
 LND_ADDRESS='lnd.embassy'
-LNDG_ADDRESS='lndg.embassy'
-LNDG_PASS=$(yq e '.password' /root/start9/config.yaml)
+SQUEAKNODE_ADDRESS='squeaknode.embassy'
+SQUEAKNODE_PASS=$(yq e '.password' /root/start9/config.yaml)
 HOST_IP=$(ip -4 route list match 0/0 | awk '{print $3}')
 
 
@@ -38,8 +38,8 @@ export SQUEAKNODE_LND_MACAROON_PATH="/mnt/lnd/data/chain/bitcoin/mainnet/admin.m
 #export SQUEAKNODE_TOR_PROXY_IP=
 #export SQUEAKNODE_TOR_PROXY_PORT=
 export SQUEAKNODE_WEBADMIN_ENABLED="true"
-export SQUEAKNODE_WEBADMIN_USERNAME='lndg-admin'
-export SQUEAKNODE_WEBADMIN_PASSWORD=$LNDG_PASS
+export SQUEAKNODE_WEBADMIN_USERNAME='squeaknode-admin'
+export SQUEAKNODE_WEBADMIN_PASSWORD=$SQUEAKNODE_PASS
 export SQUEAKNODE_NODE_NETWORK='mainnet'
 export SQUEAKNODE_NODE_SQK_DIR_PATH='/root/sqk'
 export SQUEAKNODE_NODE_MAX_SQUEAKS=10000
@@ -55,15 +55,15 @@ cp /mnt/lnd/*.macaroon /mnt/lnd/data/chain/bitcoin/mainnet
   echo 'data:' >> /root/start9/stats.yaml
   echo '  Username: ' >> /root/start9/stats.yaml
         echo '    type: string' >> /root/start9/stats.yaml
-        echo '    value: lndg-admin' >> /root/start9/stats.yaml
-        echo '    description: This is your admin username for LNDg' >> /root/start9/stats.yaml
+        echo '    value: squeaknode-admin' >> /root/start9/stats.yaml
+        echo '    description: This is your admin username for Squeaknode' >> /root/start9/stats.yaml
         echo '    copyable: true' >> /root/start9/stats.yaml
         echo '    masked: false' >> /root/start9/stats.yaml
         echo '    qr: false' >> /root/start9/stats.yaml
   echo '  Password: ' >> /root/start9/stats.yaml
         echo '    type: string' >> /root/start9/stats.yaml
-        echo "    value: \"$LNDG_PASS\"" >> /root/start9/stats.yaml
-        echo '    description: This is your admin password for LNDg. Please use caution when sharing this password, you could lose your funds!' >> /root/start9/stats.yaml
+        echo "    value: \"$SQUEAKNODE_PASS\"" >> /root/start9/stats.yaml
+        echo '    description: This is your admin password for Squeaknode. Please use caution when sharing this password, you could lose your funds!' >> /root/start9/stats.yaml
         echo '    copyable: true' >> /root/start9/stats.yaml
         echo '    masked: true' >> /root/start9/stats.yaml
         echo '    qr: false' >> /root/start9/stats.yaml

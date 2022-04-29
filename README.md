@@ -1,6 +1,6 @@
-# Basic instructions for setup of LNDg
+# Basic instructions for setup of Squeaknode
 
-`lndg` is a Lite GUI web interface to analyze lnd data and leverage the backend database for automation tools around rebalancing and other basic maintenance tasks. 
+`squeaknode` is a Lite GUI web interface to analyze lnd data and leverage the backend database for automation tools around rebalancing and other basic maintenance tasks. 
 
 ## Dependencies
 
@@ -13,11 +13,11 @@
 
 ## Cloning
 
-Clone the project locally. Note the submodule link to the original project(s). 
+Clone the project locally. Note the submodule link to the original project(s).
 
 ```
-git clone git@github.com:Start9Labs/lndg-wrapper.git
-cd lndg-wrapper
+git clone git@github.com:Start9Labs/squeaknode-wrapper.git
+cd squeaknode-wrapper
 git submodule update --init --recursive
 docker run --privileged --rm tonistiigi/binfmt --install arm64,riscv64,arm
 ```
@@ -36,12 +36,12 @@ SSH into an Embassy device.
 `scp` the `.s9pk` to any directory from your local machine.
 
 ```
-scp lndg.s9pk root@<LAN ID>:/root
+scp squeaknode.s9pk root@<LAN ID>:/root
 ```
 
 Run the following command to determine successful install:
 
 ```
 embassy-cli auth login
-embassy-cli package install lndg.s9pk
+embassy-cli package install squeaknode.s9pk
 ```
