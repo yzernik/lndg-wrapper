@@ -96,8 +96,8 @@ interfaces:
       port-mapping:
         80: "12994"
     lan-config:
-      443:
-        ssl: true
+      80:
+        ssl: false
         internal: 12994
     ui: true
     protocols:
