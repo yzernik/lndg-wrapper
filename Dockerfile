@@ -1,11 +1,5 @@
 FROM --platform=linux/arm64/v8 python:3.8-slim-buster AS compile-image
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-	apt-get install -y \
-	gcc \
-	libffi-dev \
-	build-essential
-
 RUN python -m venv /opt/venv
 # Make sure we use the virtualenv:
 ENV PATH="/opt/venv/bin:$PATH"
@@ -34,9 +28,6 @@ COPY --from=compile-image /opt/venv /opt/venv
 
 EXPOSE 8555
 EXPOSE 18555
-EXPOSE 18666
-EXPOSE 18777
-# Web server
 EXPOSE 12994
 
 ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh

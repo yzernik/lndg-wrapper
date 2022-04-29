@@ -1,6 +1,6 @@
 # Basic instructions for setup of Squeaknode
 
-`squeaknode` is a Lite GUI web interface to analyze lnd data and leverage the backend database for automation tools around rebalancing and other basic maintenance tasks. 
+This project wraps the [Squeaknode](https://github.com/squeaknode/squeaknode) app for EmbassyOS.
 
 ## Dependencies
 
